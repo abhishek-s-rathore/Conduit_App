@@ -37,7 +37,7 @@ export default class Sidebar extends React.Component {
 
     return (
       <aside className="flex-30  self-start bg-gray-200 rounded p-4 ">
-        <h3 className="mb-4 ml-2 font-bold">Popular tags</h3>
+        <h3 className="mb-4 ml-2 font-bold">Popular Tags</h3>
         <div className="flex flex-wrap">
           {this.state.tags.map((tag) =>
             tag === "" ? (
@@ -45,10 +45,10 @@ export default class Sidebar extends React.Component {
             ) : (
               <Link
                 key={tag}
-                className="border border border-gray-400 m-2 rounded px-2 py-2 "
+                className="border border-gray-500 m-2 rounded px-2 py-1 text-xs"
                 onClick={() => this.props.addTab(tag)}
               >
-                {tag}
+                {tag.toUpperCase()}
               </Link>
             )
           )}

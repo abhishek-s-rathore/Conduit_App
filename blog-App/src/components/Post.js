@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+let moment = require('moment')
+
 function Post(props) {
   let { author, createdAt, title, description, tagList, slug, favoritesCount } =
     props.article;
@@ -23,7 +26,7 @@ function Post(props) {
           </div>
           <div className="ml-4">
             <Link to={`/profile/${author.username}`}>{author.username}</Link>
-            <p>{createdAt}</p>
+            <p>{moment(createdAt).format('lll')}</p>
           </div>
         </div>
         <div>
@@ -55,8 +58,8 @@ function Post(props) {
             e === "" ? (
               ""
             ) : (
-              <li key={i} className="mr-4 border rounded px-2">
-                <Link to={`/article/${slug}`}>{e}</Link>
+              <li key={i} className="mr-4 border rounded px-2 text-slate-800">
+                <Link className='text-gray-600 text-sm' to={`/article/${slug}`}>{e.toUpperCase()}</Link>
               </li>
             )
           )}

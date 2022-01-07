@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+let moment = require('moment');
 
 function SingleHero(props) {
   const { author, createdAt, title, slug } = props.article;
@@ -27,7 +28,7 @@ function SingleHero(props) {
             </div>
             <div className="ml-4">
               <Link to={`/profile/${author.username}`}>{author.username}</Link>
-              <p>{createdAt}</p>
+              <p>{moment(createdAt).format('lll')}</p>
             </div>
           </div>
           {user && user.username === author.username && (

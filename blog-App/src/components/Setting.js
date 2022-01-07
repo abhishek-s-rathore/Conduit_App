@@ -61,7 +61,9 @@ class Setting extends React.Component {
       body: JSON.stringify({ user: { username, email, bio, image, password } }),
     })
       .then((res) => res.json())
-      .then(({ user }) => console.log(user));
+      .then(({ user }) => {
+        this.props.history.push("/");
+      });
   };
 
   render() {
@@ -123,7 +125,7 @@ class Setting extends React.Component {
               <fieldset className="text-right mt-4">
                 <input
                   type="submit"
-                  value="Update Setting"
+                  value="Update Profile"
                   className="px-4 py-3 bg-green-500 text-white font-bold rounded"
                 />
               </fieldset>

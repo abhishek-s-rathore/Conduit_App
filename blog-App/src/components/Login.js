@@ -15,7 +15,6 @@ class Login extends React.Component {
   handleChange = (event) => {
     const { value, name } = event.target;
     const errors = { ...this.state.errors };
-    console.log(errors);
     switch (name) {
       case "email":
         errors.email =
@@ -25,11 +24,11 @@ class Login extends React.Component {
         let passwordError;
         let vr = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/;
         if (value.length < 6) {
-          passwordError = "password must b included 6 charecters";
+          passwordError = "password must be included 5 characters";
         }
         if (!vr.test(value)) {
           passwordError =
-            "password must be include 8 at least one letter, one number and one special character";
+            "password must be include at least one letter, one number and one special character";
         }
         errors.password = passwordError;
         break;
@@ -44,10 +43,10 @@ class Login extends React.Component {
     });
   };
 
+
   handleSubmit = async (event) => {
     event.preventDefault();
     const { email, password, errors } = this.state;
-    console.log({ email, password });
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -62,11 +61,11 @@ class Login extends React.Component {
             ...preState,
             errors: {
               ...preState.errors,
-              email: "Email and password is incorrect",
+              email: "Email or password is incorrect",
             },
           };
         });
-        throw new Error("data do not  fetch");
+        throw new Error("Data is not fetched");
       }
       let user = await response.json();
       let { history } = this.props;

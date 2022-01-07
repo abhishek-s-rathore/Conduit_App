@@ -18,7 +18,7 @@ function SingleArtiCont(props) {
                 ""
               ) : (
                 <li className="mr-4 border rounded px-2">
-                  <Link href="">{e}</Link>
+                  <Link href="">{e.toUpperCase()}</Link>
                 </li>
               )
             )}

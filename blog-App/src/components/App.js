@@ -1,22 +1,23 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { localStorageUser, userUrl } from "../utils/constant";
 import "../App.scss";
+
+
 import Header from "./Header";
 import Home from "./Home";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import SingleArticle from "./SingleArticle";
-
-import { localStorageUser, userUrl } from "../utils/constant";
 import NewPost from "./NewPost";
 import FullPageSpinner from "./FullPageSpinner";
 import Nomatch from "./Nomatch";
 import Setting from "./Setting";
-
 import Profile from "./Profile";
 import ArticleEdit from "./ArticleEdit";
 
 class App extends React.Component {
+
   state = {
     isLogedInUser: false,
     user: null,
@@ -78,6 +79,7 @@ class App extends React.Component {
     let { history } = this.props;
   };
 
+
   editArticleFn = (article) => {
     console.log(article);
     this.setState({
@@ -85,19 +87,24 @@ class App extends React.Component {
     });
   };
 
+
   render() {
     const { isLogedInUser, user, isVerifying, article } = this.state;
 
     if (isVerifying) {
       return <FullPageSpinner />;
     }
+
     return (
       <>
         <Header user={user} isLogedInUser={isLogedInUser} />
+
         <Switch>
+
           <Route path="/" exact>
             <Home user={user} isLogedInUser={isLogedInUser} />
           </Route>
+
           {isLogedInUser ? (
             <AuthanticatePage
               isLogedInUser={isLogedInUser}
@@ -112,6 +119,7 @@ class App extends React.Component {
               isLogedInUser={isLogedInUser}
             />
           )}
+
         </Switch>
       </>
     );
@@ -120,13 +128,14 @@ class App extends React.Component {
 
 function AuthanticatePage(props) {
   let { isLogedInUser, user, logout, editArticleFn, article } = props;
-  console.log(isLogedInUser);
   return (
     <>
       <Switch>
+
         <Route path="/new-post">
           <NewPost user={user} />
         </Route>
+
         <Route path="/article/:slug">
           <SingleArticle
             isLogedInUser={isLogedInUser}
@@ -134,46 +143,58 @@ function AuthanticatePage(props) {
             editArticleFn={editArticleFn}
           />
         </Route>
+
         <Route path="/setting">
           <Setting user={user} logout={logout} />
         </Route>
+
         <Route path="/profile/:username">
           <Profile user={user} />
         </Route>
+
         <Route path="/editor/:slug">
           <ArticleEdit article={article} user={user} />
         </Route>
+
         <Route path="*">
           <Nomatch />
         </Route>
+
       </Switch>
     </>
   );
 }
+
 
 function UnAuthanticatePage(props) {
   let { isLogedInUserFn, isLogedInUser } = props;
   return (
     <>
       <Switch>
+
         <Route path="/login">
           <Login isLogedInUserFn={isLogedInUserFn} />
         </Route>
+
         <Route path="/signup">
           <SignUp isLogedInUserFn={isLogedInUserFn} />
         </Route>
+
         <Route path="/article/:slug">
           <SingleArticle
             isLogedInUserFn={isLogedInUserFn}
             isLogedInUser={isLogedInUser}
           />
         </Route>
+
         <Route path="/profile/:username">
           <Profile />
         </Route>
+
         <Route path="*">
           <Nomatch />
         </Route>
+
       </Switch>
     </>
   );

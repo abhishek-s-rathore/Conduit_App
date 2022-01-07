@@ -2,17 +2,17 @@ import React from "react";
 import { NavLink, Route, Link } from "react-router-dom";
 
 function Header(props) {
-  const { isLogedInUser, user, handleProfile } = props;
+  const { isLogedInUser, user} = props;
   return (
     <header className="bg-gray-100">
       <div className="container flex justify-between items-center py-4">
-        <NavLink
-          to="/index"
+        <Link
+          to="/"
           exact
-          className="text-green-600 font-semibold	 text-2xl "
+          className="text-green-600 font-bold	 text-2xl bg-slate-50"
         >
-          conduit
-        </NavLink>
+          Conduit
+        </Link>
         <nav>
           <ul className="flex">
             <li className="ml-4 font-semibold	">
@@ -23,7 +23,7 @@ function Header(props) {
             {isLogedInUser === false ? (
               <UnloginUser />
             ) : (
-              <LoginUser user={user} handleProfile={handleProfile} />
+              <LoginUser user={user} />
             )}
           </ul>
         </nav>
@@ -50,7 +50,7 @@ function UnloginUser(props) {
 }
 
 function LoginUser(props) {
-  let { user, handleProfile } = props;
+  let { user } = props;
   return (
     <>
       <li className="ml-4 font-semibold	">

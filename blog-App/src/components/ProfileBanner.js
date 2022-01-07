@@ -18,7 +18,7 @@ class ProfileBanner extends React.Component {
                 to="/setting"
                 className="text-gray-300 border py-2 px-4 rounded-xl"
               >
-                Edit Profile Setting
+                Edit Profile
               </Link>
             ) : (
               <button

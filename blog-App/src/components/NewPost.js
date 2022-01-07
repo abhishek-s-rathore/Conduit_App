@@ -84,7 +84,7 @@ class NewPost extends React.Component {
         >
           <input
             type="text"
-            placeholder="Article Title"
+            placeholder="Article title...."
             name="title"
             className="w-full border border-gray-400 mt-4 rounded px-2 py-2"
             value={title}
@@ -92,7 +92,7 @@ class NewPost extends React.Component {
           />
           <input
             type="text"
-            placeholder="What's this article about border-gray-400"
+            placeholder="What's this article about...."
             className="w-full border border-gray-400 mt-4 rounded px-2 py-2"
             name="description"
             value={description}
@@ -103,7 +103,7 @@ class NewPost extends React.Component {
             id=""
             cols="30"
             rows="10"
-            placeholder="Write your article(in markdown)"
+            placeholder="Write your article(in markdown)...."
             className="w-full border border-gray-400 mt-4 rounded px-2 py-2 "
             value={body}
             onChange={this.handleChange}
@@ -111,7 +111,7 @@ class NewPost extends React.Component {
 
           <input
             type="text"
-            placeholder="Enter Tags"
+            placeholder="Enter tags...."
             name="tagList"
             className="w-full border border-gray-400 mt-4 rounded px-2 py-2 "
             value={tagList}

@@ -17,7 +17,6 @@ class SignUp extends React.Component {
   handleChange = (event) => {
     const { value, name } = event.target;
     const errors = { ...this.state.errors };
-    console.log(errors);
     switch (name) {
       case "email":
         errors.email =
@@ -27,11 +26,11 @@ class SignUp extends React.Component {
         let passwordError;
         let vr = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/;
         if (value.length < 6) {
-          passwordError = "password must b included 6 charecters";
+          passwordError = "password must be included 5 characters";
         }
         if (!vr.test(value)) {
           passwordError =
-            "password must be include 8 at least one letter, one number and one special character";
+            "password must be include at least one letter, one number and one special character";
         }
         errors.password = passwordError;
         break;
@@ -52,7 +51,6 @@ class SignUp extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const { username, email, password, errors } = this.state;
-    console.log({ username, email, password });
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -71,12 +69,11 @@ class SignUp extends React.Component {
               errors,
             })
           );
-        throw new Error("data do not  fetch");
+        throw new Error("Data is not fetched");
       }
       let user = await response.json();
-      let { history } = this.props;
       this.props.isLogedInUserFn(user["user"]);
-      history.push("/");
+      this.props.history.push("/");
     } catch (error) {
       console.log({ error });
     }
@@ -152,4 +149,4 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+export default withRouter(SignUp);
